@@ -24,6 +24,12 @@ namespace Gamekit2D
         Vector2[] m_RaycastPositions = new Vector2[3];
 
         public bool IsGrounded { get; protected set; }
+        
+        public void SetIsGrounded(bool a)
+        {
+            IsGrounded = a;
+        }
+
         public bool IsCeilinged { get; protected set; }
         public Vector2 Velocity { get; protected set; }
         public Rigidbody2D Rigidbody2D { get { return m_Rigidbody2D; } }

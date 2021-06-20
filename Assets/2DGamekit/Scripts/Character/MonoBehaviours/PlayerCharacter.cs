@@ -552,13 +552,21 @@ namespace Gamekit2D
             m_MoveVector.x = Mathf.MoveTowards(m_MoveVector.x, desiredSpeed, acceleration * Time.deltaTime);
         }
 
-        public void AirborneVerticalMovement()
+        public void SetAdditive(float x)
         {
+            m_CharacterController2D.SetIsGrounded(true);
+            m_MoveVector.y = 0f;
+            m_MoveVector.y += x;
+        }
+
+        public void AirborneVerticalMovement()
+        { 
             if (Mathf.Approximately(m_MoveVector.y, 0f) || m_CharacterController2D.IsCeilinged && m_MoveVector.y > 0f)
             {
                 m_MoveVector.y = 0f;
             }
             m_MoveVector.y -= gravity * Time.deltaTime;
+            
         }
 
         public bool CheckForJumpInput()
