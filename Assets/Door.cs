@@ -15,54 +15,83 @@ public class Door : MonoBehaviour
     void Start() {
         saveFile = Application.persistentDataPath + "/gamedata.json";
     }
-
-    public void checkRed()
+    private bool redDoor = false;
+    private bool greenDoor = false;
+    private bool purpleDoor = false;
+    public void checkRed(Gamekit2D.DialogueCanvasController canvas)
     {
-        if (File.Exists(saveFile))
+        if(!redDoor)
         {
-            string fileContents = File.ReadAllText(saveFile);
-
-            gameData["purple"] = (fileContents.Split(' ')[0] == "True");
-            gameData["green"] = (fileContents.Split(' ')[1] == "True");
-            gameData["red"] = (fileContents.Split(' ')[2] == "True");
-
-            if (gameData["red"] == true)
+            if (File.Exists(saveFile))
             {
-                door.GetComponent<Animator>().Play("DoorOpening");
+                string fileContents = File.ReadAllText(saveFile);
+
+                gameData["purple"] = (fileContents.Split(' ')[0] == "True");
+                gameData["green"] = (fileContents.Split(' ')[1] == "True");
+                gameData["red"] = (fileContents.Split(' ')[2] == "True");
+
+                if (gameData["red"] == true)
+                {
+                    canvas.ActivateCanvasWithText("I have a key that fits!");
+                    door.GetComponent<Animator>().Play("DoorOpening");
+                    redDoor = true;
+                }
+                else
+                {
+                    canvas.ActivateCanvasWithText("I need a red key to open this door");
+                }
             }
         }
     }
 
-    public void checkPurple()
+    public void checkPurple(Gamekit2D.DialogueCanvasController canvas)
     {
-        if (File.Exists(saveFile))
+        if (!purpleDoor)
         {
-            string fileContents = File.ReadAllText(saveFile);
-
-            gameData["purple"] = (fileContents.Split(' ')[0] == "True");
-            gameData["green"] = (fileContents.Split(' ')[1] == "True");
-            gameData["red"] = (fileContents.Split(' ')[2] == "True");
-
-            if (gameData["purple"] == true)
+            if (File.Exists(saveFile))
             {
-                door.GetComponent<Animator>().Play("DoorOpening");
+                string fileContents = File.ReadAllText(saveFile);
+
+                gameData["purple"] = (fileContents.Split(' ')[0] == "True");
+                gameData["green"] = (fileContents.Split(' ')[1] == "True");
+                gameData["red"] = (fileContents.Split(' ')[2] == "True");
+
+                if (gameData["purple"] == true)
+                {
+                    canvas.ActivateCanvasWithText("I have a key that fits!");
+                    door.GetComponent<Animator>().Play("DoorOpening");
+                    purpleDoor = true;
+                }
+                else
+                {
+                    canvas.ActivateCanvasWithText("I need a purple key to open this door");
+                }
             }
         }
     }
 
-    public void checkGreen()
+    public void checkGreen(Gamekit2D.DialogueCanvasController canvas)
     {
-        if (File.Exists(saveFile))
+        if (!greenDoor)
         {
-            string fileContents = File.ReadAllText(saveFile);
-
-            gameData["purple"] = (fileContents.Split(' ')[0] == "True");
-            gameData["green"] = (fileContents.Split(' ')[1] == "True");
-            gameData["red"] = (fileContents.Split(' ')[2] == "True");
-
-            if (gameData["green"] == true)
+            if (File.Exists(saveFile))
             {
-                door.GetComponent<Animator>().Play("DoorOpening");
+                string fileContents = File.ReadAllText(saveFile);
+
+                gameData["purple"] = (fileContents.Split(' ')[0] == "True");
+                gameData["green"] = (fileContents.Split(' ')[1] == "True");
+                gameData["red"] = (fileContents.Split(' ')[2] == "True");
+
+                if (gameData["green"] == true)
+                {
+                    canvas.ActivateCanvasWithText("I have a key that fits!");
+                    door.GetComponent<Animator>().Play("DoorOpening");
+                    greenDoor = true;
+                }
+                else
+                {
+                    canvas.ActivateCanvasWithText("I need a green key to open this door");
+                }
             }
         }
     }

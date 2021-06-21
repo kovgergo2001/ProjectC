@@ -1,11 +1,16 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Gamekit2D
 {
     public class Damageable : MonoBehaviour, IDataPersister
     {
+
+        public bool isEllen = false;
+
         [Serializable]
         public class HealthEvent : UnityEvent<Damageable>
         { }
@@ -48,6 +53,34 @@ namespace Gamekit2D
             m_CurrentHealth = startingHealth;
 
             OnHealthSet.Invoke(this);
+            string saveFile =  Application.persistentDataPath + "/level1";
+            if (File.Exists(saveFile) && SceneManager.GetActiveScene().name == "NewScene")
+            {
+                
+                string fileContents = File.ReadAllText(saveFile);
+                if (!isEllen && fileContents=="true")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            else if(!File.Exists(saveFile))
+            {
+                File.WriteAllText(saveFile, "false");
+            }
+            saveFile = Application.persistentDataPath + "/level2";
+            if (File.Exists(saveFile) && SceneManager.GetActiveScene().name == "Level2")
+            {
+                
+                string fileContents = File.ReadAllText(saveFile);
+                if (!isEllen && fileContents == "true")
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            else if (!File.Exists(saveFile))
+            {
+                File.WriteAllText(saveFile, "false");
+            }
 
             DisableInvulnerability();
         }
@@ -107,7 +140,7 @@ namespace Gamekit2D
             if (m_CurrentHealth <= 0)
             {
                 OnDie.Invoke(damager, this);
-                m_ResetHealthOnSceneReload = true;
+                m_ResetHealthOnSceneReload = false;
                 EnableInvulnerability();
                 if (disableOnDeath) gameObject.SetActive(false);
             }

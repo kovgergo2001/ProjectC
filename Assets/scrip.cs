@@ -54,7 +54,6 @@ public class scrip : MonoBehaviour
             helper.Add(pair.Value);
         }
         string jsonString = helper[0].ToString() + " " + helper[1].ToString() + " " + helper[2].ToString();
-        Debug.Log(jsonString);
         File.WriteAllText(saveFile, jsonString);
     }
 
