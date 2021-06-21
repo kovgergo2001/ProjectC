@@ -15,7 +15,9 @@ public class scrip : MonoBehaviour
         gameData.Add("purple", false);
         gameData.Add("green", false);
         gameData.Add("red", false);
-        saveFile = Application.persistentDataPath + "/gamedata.json";
+        gameData.Add("blue", false);
+        gameData.Add("engine", false);
+        saveFile = Application.persistentDataPath + "/gamedata";
         if (!File.Exists(saveFile))
         {
             List<bool> helper = new List<bool>();
@@ -23,7 +25,7 @@ public class scrip : MonoBehaviour
             {
                 helper.Add(pair.Value);
             }
-            string jsonString = helper[0].ToString() + " " + helper[1].ToString() + " " + helper[2].ToString();
+            string jsonString = helper[0].ToString() + " " + helper[1].ToString() + " " + helper[2].ToString() + " " + helper[3].ToString() + " " + helper[4].ToString();
             File.WriteAllText(saveFile, jsonString);
         }
         this.readFile();
@@ -39,6 +41,8 @@ public class scrip : MonoBehaviour
             gameData["purple"] = (fileContents.Split(' ')[0] == "True");
             gameData["green"] = (fileContents.Split(' ')[1] == "True");
             gameData["red"] = (fileContents.Split(' ')[2] == "True");
+            gameData["blue"] = (fileContents.Split(' ')[3] == "True");
+            gameData["engine"] = (fileContents.Split(' ')[4] == "True");
         }
     }
 
@@ -47,13 +51,12 @@ public class scrip : MonoBehaviour
         gameData[a] = true;
         List<bool> helper = new List<bool>();
         Debug.Log(saveFile);
-        if(gameData["red"])
-        Debug.Log("nice");
+
         foreach (var pair in gameData)
         {
             helper.Add(pair.Value);
         }
-        string jsonString = helper[0].ToString() + " " + helper[1].ToString() + " " + helper[2].ToString();
+        string jsonString = helper[0].ToString() + " " + helper[1].ToString() + " " + helper[2].ToString() + " " + helper[3].ToString() + " " + helper[4].ToString();
         File.WriteAllText(saveFile, jsonString);
     }
 

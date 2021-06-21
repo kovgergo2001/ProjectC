@@ -58,28 +58,28 @@ namespace Gamekit2D
             {
                 
                 string fileContents = File.ReadAllText(saveFile);
-                if (!isEllen && fileContents=="true")
+                if (!isEllen && fileContents=="True")
                 {
                     gameObject.SetActive(false);
                 }
             }
             else if(!File.Exists(saveFile))
             {
-                File.WriteAllText(saveFile, "false");
+                File.WriteAllText(saveFile, "False");
             }
             saveFile = Application.persistentDataPath + "/level2";
             if (File.Exists(saveFile) && SceneManager.GetActiveScene().name == "Level2")
             {
                 
                 string fileContents = File.ReadAllText(saveFile);
-                if (!isEllen && fileContents == "true")
+                if (!isEllen && fileContents == "True")
                 {
                     gameObject.SetActive(false);
                 }
             }
             else if (!File.Exists(saveFile))
             {
-                File.WriteAllText(saveFile, "false");
+                File.WriteAllText(saveFile, "False");
             }
 
             DisableInvulnerability();

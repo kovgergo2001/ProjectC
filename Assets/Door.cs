@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
     public GameObject door;
     private string saveFile;
     void Start() {
-        saveFile = Application.persistentDataPath + "/gamedata.json";
+        saveFile = Application.persistentDataPath + "/gamedata";
     }
     private bool redDoor = false;
     private bool greenDoor = false;

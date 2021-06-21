@@ -15,12 +15,12 @@ public class Saver : MonoBehaviour
     public void Save1()
     {
         string saveFile = Application.persistentDataPath + "/level1";
-        File.WriteAllText(saveFile, "true");
+        File.WriteAllText(saveFile, "True");
     }
     public void Save2()
     {
         string saveFile = Application.persistentDataPath + "/level2";
-        File.WriteAllText(saveFile, "true");
+        File.WriteAllText(saveFile, "True");
     }
 
 }
