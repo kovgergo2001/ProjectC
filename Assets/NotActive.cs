@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NotActive : MonoBehaviour
 {
-    public GameObject gameObject;
+    public new GameObject gameObject;
     void Start()
     {
         string saveFile = Application.persistentDataPath + "/level1";

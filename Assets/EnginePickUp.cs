@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnginePickUp : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject gameObject;
+    public new GameObject gameObject;
     void Start()
     {
         string saveFile = Application.persistentDataPath + "/level2";
