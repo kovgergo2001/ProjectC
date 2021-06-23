@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpaceCraft : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class SpaceCraft : MonoBehaviour
         if (key == true && engine == true)
         {
             canvas.ActivateCanvasWithText("I can leave!\n I won!");
+            StartCoroutine(Waiter(3));
         }
         else if (key != true)
         {
@@ -37,5 +39,11 @@ public class SpaceCraft : MonoBehaviour
             canvas.ActivateCanvasWithText("Oh no! The engine is missing!\nMaybe it is underground, I should go and search for it!");
         }
 
+    }
+
+    private IEnumerator Waiter(int s)
+    {
+        yield return new WaitForSecondsRealtime(s);
+        SceneManager.LoadScene("Start");
     }
 }
